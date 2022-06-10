@@ -1,0 +1,21 @@
+[package]
+name = "wasihttp"
+version = "0.0.1"
+publish = false
+edition = "2021"
+
+[dependencies]
+tokio = { git = "https://github.com/haraldh/tokio/", branch = "wasi_tokio", features = ["net", "rt", "macros"] }
+tokio-util = { git = "https://github.com/haraldh/tokio/", branch = "wasi_tokio", features = ["codec"] }
+tokio-stream = { git = "https://github.com/haraldh/tokio/", branch = "wasi_tokio"  }
+
+bytes = "1.0.0"
+futures = { version = "0.3.0", features = ["thread-pool"]}
+
+http = "0.2"
+httparse = "1.0"
+httpdate = "1.0"
+
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
