@@ -33,15 +33,24 @@ async fn main() -> Result<(), Box<dyn Error>> {
             .unwrap_or_else(|| "127.0.0.1:8080".to_string());
         let server = TcpListener::bind(&addr).await?;
     */
-    let server = TcpListener::from_std(unsafe { std::net::TcpListener::from_raw_fd(3) }).unwrap();
+    let listener = unsafe { std::net::TcpListener::from_raw_fd(3) };
+    listener.set_nonblocking(true).unwrap();
+    let server = TcpListener::from_std(listener).unwrap();
 
     loop {
-        let (stream, _) = server.accept().await?;
-        tokio::spawn(async move {
-            if let Err(e) = process(stream).await {
+        let stream_res = server.accept().await;
+        match stream_res {
+            Err(e) => {
                 println!("failed to process connection; error = {}", e);
             }
-        });
+            Ok((stream, _)) => {
+                tokio::spawn(async move {
+                    if let Err(e) = process(stream).await {
+                        println!("failed to process connection; error = {}", e);
+                    }
+                });
+            }
+        }
     }
 }
 
