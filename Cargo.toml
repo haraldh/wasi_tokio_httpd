@@ -5,9 +5,9 @@ publish = false
 edition = "2021"
 
 [dependencies]
-tokio = { git = "https://github.com/haraldh/tokio/", branch = "wasi_tokio", features = ["net", "rt", "macros"] }
-tokio-util = { git = "https://github.com/haraldh/tokio/", branch = "wasi_tokio", features = ["codec"] }
-tokio-stream = { git = "https://github.com/haraldh/tokio/", branch = "wasi_tokio"  }
+tokio = { git = "https://github.com/rjzak/tokio", branch = "wasi_wip", features = ["net", "rt", "macros"] }
+tokio-util = { git = "https://github.com/rjzak/tokio", branch = "wasi_wip", features = ["codec"] }
+tokio-stream = { git = "https://github.com/rjzak/tokio", branch = "wasi_wip"  }
 
 bytes = "1.0.0"
 futures = { version = "0.3.0", features = ["thread-pool"]}
