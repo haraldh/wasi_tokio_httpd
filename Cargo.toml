@@ -1,5 +1,5 @@
 [package]
-name = "wasihttp"
+name = "wasi_tokio_http"
 version = "0.0.1"
 publish = false
 edition = "2021"
